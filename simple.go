@@ -45,3 +45,17 @@ func SortVStable[V any](a []V, vLess func(a, b V) bool) {
 	// 使用值比较执行稳定排序
 	sort.Stable(NewSortByValue(a, vLess))
 }
+
+// IsSortedByValue checks whether the slice is sorted using value-based comparison
+//
+// IsSortedByValue 使用值比较检查切片是否已排序
+func IsSortedByValue[V any](a []V, vLess func(a, b V) bool) bool {
+	return sort.IsSorted(NewSortByValue(a, vLess))
+}
+
+// IsSortedByIndex checks whether the slice is sorted using index-based comparison
+//
+// IsSortedByIndex 使用索引比较检查切片是否已排序
+func IsSortedByIndex[V any](a []V, iLess func(i, j int) bool) bool {
+	return sort.IsSorted(NewSortByIndex(a, iLess))
+}

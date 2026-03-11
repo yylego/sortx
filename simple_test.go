@@ -149,3 +149,27 @@ func TestSortSingleElement(t *testing.T) {
 	})
 	require.Equal(t, []string{"hello"}, single)
 }
+
+// TestIsSortedByValue tests IsSortedByValue function
+// TestIsSortedByValue 测试 IsSortedByValue 函数
+func TestIsSortedByValue(t *testing.T) {
+	require.True(t, sortx.IsSortedByValue([]int{1, 2, 3, 4, 5}, func(a, b int) bool {
+		return a < b
+	}))
+	require.False(t, sortx.IsSortedByValue([]int{3, 1, 4, 1, 5}, func(a, b int) bool {
+		return a < b
+	}))
+}
+
+// TestIsSortedByIndex tests IsSortedByIndex function
+// TestIsSortedByIndex 测试 IsSortedByIndex 函数
+func TestIsSortedByIndex(t *testing.T) {
+	a := []int{1, 2, 3, 4, 5}
+	require.True(t, sortx.IsSortedByIndex(a, func(i, j int) bool {
+		return a[i] < a[j]
+	}))
+	b := []int{3, 1, 4, 1, 5}
+	require.False(t, sortx.IsSortedByIndex(b, func(i, j int) bool {
+		return b[i] < b[j]
+	}))
+}
